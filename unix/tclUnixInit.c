@@ -868,6 +868,8 @@ TclpSetVariables(
 
 #ifdef DJGPP
     Tcl_SetVar2(interp, "tcl_platform", "platform", "dos", TCL_GLOBAL_ONLY);
+#elif defined(__KLIBC__)
+    Tcl_SetVar2(interp, "tcl_platform", "platform", "os2", TCL_GLOBAL_ONLY);
 #else
     Tcl_SetVar2(interp, "tcl_platform", "platform", "unix", TCL_GLOBAL_ONLY);
 #endif

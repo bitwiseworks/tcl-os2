@@ -252,8 +252,13 @@ TclpTempFileName(void)
     }
 
     fcntl(fd, F_SETFD, FD_CLOEXEC);
-    TclpObjDeleteFile(nameObj);
+#ifdef __KLIBC__
     close(fd);
+#endif
+    TclpObjDeleteFile(nameObj);
+#ifndef __OS2__
+    close(fd);
+#endif
     retVal = Tcl_DuplicateObj(nameObj);
     Tcl_DecrRefCount(nameObj);
     return retVal;

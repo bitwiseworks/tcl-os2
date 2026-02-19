@@ -5977,6 +5977,16 @@ printf "%s\n" "$ac_cv_cygwin" >&6; }
 		fi
 	    fi
 	    ;;
+	OS/2*)
+	    SHLIB_CFLAGS=""
+	    SHLIB_LD='${CC} -Zdll'
+	    SHLIB_LD_LIBS='${LIBS}'
+	    SHLIB_SUFFIX=".dll"
+	    DL_OBJS="tclLoadDl.o"
+	    DL_LIBS=""
+	    CC_SEARCH_FLAGS=""
+	    LD_SEARCH_FLAGS=""
+	    ;;
 	dgux*)
 	    SHLIB_CFLAGS="-K PIC"
 	    SHLIB_LD='${CC} -G'
@@ -7453,6 +7463,7 @@ then :
 	    AIX-*) ;;
 	    BSD/OS*) ;;
 	    CYGWIN_*|MINGW32_*|MSYS_*) ;;
+	    OS/2*) ;;
 	    HP-UX*) ;;
 	    Darwin-*) ;;
 	    IRIX*) ;;
@@ -11139,6 +11150,13 @@ printf "%s\n" "#define USE_FIONBIO 1" >>confdefs.h
 printf "%s\n" "FIONBIO" >&6; }
 	    ;;
 	SunOS-4*)
+
+printf "%s\n" "#define USE_FIONBIO 1" >>confdefs.h
+
+	    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: FIONBIO" >&5
+printf "%s\n" "FIONBIO" >&6; }
+	    ;;
+	OS/2*)
 
 printf "%s\n" "#define USE_FIONBIO 1" >>confdefs.h
 

@@ -124,6 +124,7 @@ done
 
 First=""
 for Target in $Names; do
+    Target=`printf "$Target" | tr -s :: _`
     Target=$Target.$Section$Suffix
     rm -f "$Dir/$Target" "$Dir/$Target.*"
     if test -z "$First" ; then
@@ -133,7 +134,7 @@ for Target in $Names; do
 	chmod 644 "$Dir/$First"
 	$Gzip "$Dir/$First"
     else
-	ln $Sym"$Loc$First$Gz" "$Dir/$Target$Gz"
+	ln -s $Sym"$Loc$First$Gz" "$Dir/$Target$Gz"
     fi
 done
 

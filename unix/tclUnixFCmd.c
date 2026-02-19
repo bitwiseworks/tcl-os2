@@ -721,6 +721,12 @@ DoCreateDirectory(
     mode = umask(0);
     umask(mode);
 
+#ifdef __KLIBC__
+    if (strlen(path)==2 && path[1]==':') { /* drive only */
+	return TCL_OK;
+    }
+#endif
+
     /*
      * umask return value is actually the inverse of the permissions.
      */

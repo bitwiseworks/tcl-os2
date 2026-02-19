@@ -1230,6 +1230,16 @@ AC_DEFUN([SC_CONFIG_CFLAGS], [
 	    CC_SEARCH_FLAGS=""
 	    LD_SEARCH_FLAGS=""
 	    ;;
+	OS/2*)
+	    SHLIB_CFLAGS=""
+	    SHLIB_LD='${CC} -Zdll'
+	    SHLIB_LD_LIBS='${LIBS}'
+	    SHLIB_SUFFIX=".dll"
+	    DL_OBJS="tclLoadDl.o"
+	    DL_LIBS=""
+ 	    CC_SEARCH_FLAGS=""
+ 	    LD_SEARCH_FLAGS=""
+	    ;;
 	Haiku*)
 	    LDFLAGS="$LDFLAGS -Wl,--export-dynamic"
 	    SHLIB_CFLAGS="-fPIC"
@@ -1978,6 +1988,7 @@ dnl # preprocessing tests use only CPPFLAGS.
 	    AIX-*) ;;
 	    BSD/OS*) ;;
 	    CYGWIN_*|MINGW32_*|MSYS_*) ;;
+	    OS/2*) ;;
 	    HP-UX*) ;;
 	    Darwin-*) ;;
 	    IRIX*) ;;
@@ -2306,6 +2317,10 @@ AC_DEFUN([SC_BLOCKING_STYLE], [
 	    AC_MSG_RESULT([FIONBIO])
 	    ;;
 	SunOS-4*)
+	    AC_DEFINE(USE_FIONBIO, 1, [Should we use FIONBIO?])
+	    AC_MSG_RESULT([FIONBIO])
+	    ;;
+	OS/2*)
 	    AC_DEFINE(USE_FIONBIO, 1, [Should we use FIONBIO?])
 	    AC_MSG_RESULT([FIONBIO])
 	    ;;

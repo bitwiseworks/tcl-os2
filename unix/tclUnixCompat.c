@@ -157,7 +157,11 @@ TclUnixSetBlockingMode(
 #else /* USE_FIONBIO */
     int state = (mode == TCL_MODE_NONBLOCKING);
 
+#ifdef __KLIBC__
+    return os2_ioctl(fd, FIONBIO, (char *) &state, sizeof(state));
+#else
     return ioctl(fd, FIONBIO, &state);
+#endif
 #endif /* !USE_FIONBIO */
 }
 

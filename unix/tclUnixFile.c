@@ -64,6 +64,23 @@ TclpFindExecutable(
     }
     Tcl_DStringInit(&buffer);
 
+#ifdef __KLIBC__
+    #define INCL_DOSFILEMGR
+    #include <os2.h>
+
+    /* determine the full path from what we have now */
+    char *os2name = (char*)malloc(CCHMAXPATH * sizeof(char));
+    DosQueryPathInfo(argv0, FIL_QUERYFULLNAME, os2name, CCHMAXPATH);
+    /* now replace backslashes with forward slashes */
+    char *pp;
+    for (pp = os2name; *pp != '\0'; pp++) {
+      if (*pp == '\\') {
+          *pp = '/';
+      }
+    }
+    name = os2name;
+    goto gotName;
+#else
     name = argv0;
     for (p = name; *p != '\0'; p++) {
 	if (*p == '/') {
@@ -75,6 +92,7 @@ TclpFindExecutable(
 	    goto gotName;
 	}
     }
+#endif
 
     p = getenv("PATH");					/* INTL: Native. */
     if (p == NULL) {
@@ -142,7 +160,7 @@ TclpFindExecutable(
      */
 
   gotName:
-#ifdef DJGPP
+#if defined(DJGPP) || defined(__KLIBC__)
     if (name[1] == ':')
 #else
     if (name[0] == '/')
@@ -186,6 +204,9 @@ TclpFindExecutable(
     TclSetObjNameOfExecutable(TclDStringToObj(&utfName), NULL);
 
   done:
+#ifdef __KLIBC__
+    free(os2name);
+#endif
     Tcl_DStringFree(&buffer);
 #endif
 }

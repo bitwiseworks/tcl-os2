@@ -408,6 +408,7 @@ TclpGetNativePathType(
     } else {
 	switch (tclPlatform) {
 	case TCL_PLATFORM_UNIX: {
+#ifndef __KLIBC__
 	    const char *origPath = path;
 
 	    /*
@@ -440,6 +441,7 @@ TclpGetNativePathType(
 	    break;
 	}
 	case TCL_PLATFORM_WINDOWS: {
+#endif
 	    Tcl_DString ds;
 	    const char *rootEnd;
 
