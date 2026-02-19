@@ -435,7 +435,7 @@ AC_DEFUN([SC_LOAD_TKCONFIG], [
 AC_DEFUN([SC_PROG_TCLSH], [
     AC_MSG_CHECKING([for tclsh])
     AC_CACHE_VAL(ac_cv_path_tclsh, [
-	search_path=`echo ${PATH} | sed -e 's/:/ /g'`
+	search_path=`echo ${PATH} | sed -e "s/$PATH_SEPARATOR/ /g"`
 	for dir in $search_path ; do
 	    for j in `ls -r $dir/tclsh[[8-9]]* 2> /dev/null` \
 		    `ls -r $dir/tclsh* 2> /dev/null` ; do

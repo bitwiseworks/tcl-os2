@@ -1,0 +1,6 @@
+# ignore regenerated files from autoreconf -fvi
+unix/configure
+
+# ignore new files from autoreconf -fvi
+unix/autom4te.cache/
+unix/configure~
