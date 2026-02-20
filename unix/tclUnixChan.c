@@ -1425,7 +1425,7 @@ TclpOpenFileChannel(
 	return NULL;
     }
 
-#ifdef DJGPP
+#if defined(DJGPP) || defined(__OS2__)
     SET_BITS(mode, O_BINARY);
 #endif
 
