@@ -755,7 +755,7 @@ proc ::safe::AliasGlob {child args} {
 	-- 0
     }
 
-    if {$::tcl_platform(platform) eq "windows"} {
+    if {$::tcl_platform(platform) eq "windows" || $::tcl_platform(platform) eq "os2"} {
 	set dirPartRE {^(.*)[\\/]([^\\/]*)$}
     } else {
 	set dirPartRE {^(.*)/([^/]*)$}

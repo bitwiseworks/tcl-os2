@@ -30,7 +30,7 @@ namespace eval tcl::Pkg {}
 proc tcl::Pkg::CompareExtension {fileName {ext {}}} {
     global tcl_platform
     if {$ext eq ""} {set ext [info sharedlibextension]}
-    if {$tcl_platform(platform) eq "windows"} {
+    if {$tcl_platform(platform) eq "windows" || $tcl_platform(platform) eq "os2"} {
 	return [string equal -nocase [file extension $fileName] $ext]
     } else {
 	# Some unices add trailing numbers after the .so, so

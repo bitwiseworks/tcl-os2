@@ -631,8 +631,8 @@ proc auto_import {pattern} {
 # Arguments:
 # name -			Name of a command.
 
-if {$tcl_platform(platform) eq "windows"} {
-# Windows version.
+if {$tcl_platform(platform) eq "windows" || $tcl_platform(platform) eq "os2"} {
+# Windows and OS/2 version.
 #
 # Note that file executable doesn't work under Windows, so we have to
 # look for files with .exe, .com, or .bat extensions.  Also, the path

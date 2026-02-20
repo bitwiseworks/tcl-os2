@@ -20,7 +20,11 @@
  * TCL_PLATFORM_UNIX or TCL_PLATFORM_WINDOWS.
  */
 
+#ifndef __OS2__
 TclPlatformType tclPlatform = TCL_PLATFORM_UNIX;
+#else
+TclPlatformType tclPlatform = TCL_PLATFORM_WINDOWS;
+#endif
 
 /*
  * Prototypes for local procedures defined in this file:
@@ -408,7 +412,6 @@ TclpGetNativePathType(
     } else {
 	switch (tclPlatform) {
 	case TCL_PLATFORM_UNIX: {
-#ifndef __KLIBC__
 	    const char *origPath = path;
 
 	    /*
@@ -417,7 +420,7 @@ TclpGetNativePathType(
 
 	    if (path[0] == '/') {
 		++path;
-#if defined(__CYGWIN__) || defined(__QNX__)
+#if defined(__CYGWIN__) || defined(__QNX__) || defined(__OS2__)
 		/*
 		 * Check for "//" network path prefix
 		 */
@@ -441,7 +444,6 @@ TclpGetNativePathType(
 	    break;
 	}
 	case TCL_PLATFORM_WINDOWS: {
-#endif
 	    Tcl_DString ds;
 	    const char *rootEnd;
 

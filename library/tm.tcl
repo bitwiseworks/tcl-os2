@@ -326,7 +326,7 @@ proc ::tcl::tm::Defaults {} {
 	    [file join [file dirname [file dirname $exe]] lib] \
 	    ]
 
-    if {$tcl_platform(platform) eq "windows"} {
+    if {$tcl_platform(platform) eq "windows" || $tcl_platform(platform) eq "os2"} {
 	set sep ";"
     } else {
 	set sep ":"

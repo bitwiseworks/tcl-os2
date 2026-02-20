@@ -362,6 +362,8 @@ TclpInitPlatform(void)
 {
 #ifdef DJGPP
     tclPlatform = TCL_PLATFORM_WINDOWS;
+#elif defined(__OS2__)
+    tclPlatform = TCL_PLATFORM_WINDOWS;
 #else
     tclPlatform = TCL_PLATFORM_UNIX;
 #endif
