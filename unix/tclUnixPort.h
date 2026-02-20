@@ -186,6 +186,9 @@ extern int TclUnixSetBlockingMode(int fd, int mode);
 #include <netinet/in.h>		/* struct in_addr, struct sockaddr_in */
 #include <arpa/inet.h>		/* inet_ntoa() */
 #include <netdb.h>		/* getaddrinfo() */
+#ifdef __OS2__
+#include <libcx/net.h>
+#endif
 #ifdef NEED_FAKE_RFC2553
 # include "../compat/fake-rfc2553.h"
 #endif

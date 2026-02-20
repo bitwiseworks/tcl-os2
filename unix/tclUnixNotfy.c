@@ -18,6 +18,11 @@
 				 * in tclMacOSXNotify.c */
 #include <signal.h>
 
+#if defined(__OS2__)
+#include <sys/socket.h>
+#define pipe(A) socketpair(AF_UNIX, SOCK_STREAM, 0, A)
+#endif
+
 /*
  * This structure is used to keep track of the notifier info for a registered
  * file.

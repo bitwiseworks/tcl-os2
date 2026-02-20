@@ -3091,6 +3091,7 @@ AC_DEFUN([SC_TCL_IPV6],[
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
+#include <libcx/net.h>
 ]])
 if test "x$NEED_FAKE_RFC2553" = "x1"; then
    AC_DEFINE([NEED_FAKE_RFC2553], 1,

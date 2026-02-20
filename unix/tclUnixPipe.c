@@ -12,6 +12,10 @@
  */
 
 #include "tclInt.h"
+#if defined(__OS2__)
+#include <sys/socket.h>
+#define pipe(A) socketpair(AF_UNIX, SOCK_STREAM, 0, A)
+#endif
 
 #ifdef HAVE_POSIX_SPAWNP
 #   if defined(HAVE_POSIX_SPAWN_FILE_ACTIONS_ADDDUP2) \
