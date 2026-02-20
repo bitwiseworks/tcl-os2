@@ -663,6 +663,8 @@ extern char **		environ;
 #ifdef DJGPP
 #define	TCL_PLATFORM_TRANSLATION	TCL_TRANSLATE_CRLF
 typedef int socklen_t;
+#elif defined(__OS2__)
+#define	TCL_PLATFORM_TRANSLATION	TCL_TRANSLATE_CRLF
 #else
 #define	TCL_PLATFORM_TRANSLATION	TCL_TRANSLATE_LF
 #endif
