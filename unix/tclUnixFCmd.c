@@ -558,7 +558,7 @@ TclUnixCopyFile(
     char *buffer;		/* Data buffer for copy */
     size_t nread;
 
-#ifdef DJGPP
+#if defined(DJGPP) || defined(__OS2__)
 #define BINMODE |O_BINARY
 #else
 #define BINMODE

@@ -2187,5 +2187,4 @@ $(OS2_DLL_NAME).dll: ${LIB_FILE} $(OS2_DLL_OBJ)
 	echo "EXPORTS" >> $(OS2_DLL_NAME).def
 	emxexp $(OS2_DLL_OBJ) >> $(OS2_DLL_NAME).def
 	gcc -g -Zbin-files -Zhigh-mem -Zomf -Zdll $(OS2_DLL_NAME).def -o $@ $(OS2_DLL_OBJ) $(OS2_DLL_LIBS) 
-	emximp -o libtcl@TCL_MAJOR_VERSION@.@TCL_MINOR_VERSION@.a $(OS2_DLL_NAME).def
-	emximp -o libtcl@TCL_MAJOR_VERSION@.@TCL_MINOR_VERSION@.lib $(OS2_DLL_NAME).def
+	emximp -o libtcl@TCL_MAJOR_VERSION@.@TCL_MINOR_VERSION@_dll.a $(OS2_DLL_NAME).def
